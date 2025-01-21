@@ -5,6 +5,7 @@
 
 using json = nlohmann::json;
 
+// Initialize the trading system
 TradingSystem::TradingSystem(WebSocketClient& ws_client, const std::string& client_id, const std::string& client_secret)
     : websocket_client(ws_client),
      client_id(client_id), 
@@ -17,6 +18,7 @@ TradingSystem::TradingSystem(WebSocketClient& ws_client, const std::string& clie
     std::cout << "Trading System Initialized.\n";
 }
 
+// Handle closing of Trading system
 TradingSystem::~TradingSystem() {
     try{
 
@@ -27,15 +29,18 @@ TradingSystem::~TradingSystem() {
     
 }
 
+// Placing order
 void TradingSystem::placeOrder() {
-    std::string instrument_name, amount, order_type, price;
+    std::string order, instrument_name, amount, order_type, price;
+    std::cout << "\nEnter order type(buy/sell): ";
+    std::cin >> order;
     std::cout << "\nEnter instrument_name: ";
     std::cin >> instrument_name;
     std::cout << "\nEnter amount: ";
     std::cin >> amount;
     std::cout << "\nEnter price: ";
     std::cin >> price;
-    std::cout << "\nEnter order_type: ";
+    std::cout << "\nEnter order kind(market, limit): ";
     std::cin >> order_type;
 
     json options = {
@@ -45,7 +50,7 @@ void TradingSystem::placeOrder() {
         {"type", order_type}
     };
 
-    json res = privateAPI("private/buy", options);
+    json res = privateAPI("private/"+order, options);
 
     if(res.contains("result")){
         std::cout <<"Place order result: "<<res["result"].dump(4)<<"\n";
@@ -55,6 +60,7 @@ void TradingSystem::placeOrder() {
     }
 }
 
+// Canceling order
 void TradingSystem::cancelOrder() {
     std::string order_id;
     std::cout << "Enter Order id: ";
@@ -74,6 +80,7 @@ void TradingSystem::cancelOrder() {
 
 }
 
+// Modifying Order
 void TradingSystem::modifyOrder() {
     std::string order_id, amount , price;
     std::cout << "\nEnter order id: ";
@@ -99,6 +106,7 @@ void TradingSystem::modifyOrder() {
     }
 }
 
+// Get the open orders
 void TradingSystem::getOrderbook() {
     json options ={};
 
@@ -110,6 +118,7 @@ void TradingSystem::getOrderbook() {
     }
 }
 
+// Get Current Positions
 void TradingSystem::viewPositions() {
     json options = {};
 
@@ -121,6 +130,7 @@ void TradingSystem::viewPositions() {
     }
 }
 
+// Handle requests of private type
 json TradingSystem::privateAPI(const std::string &method,const json &options){
     if(!websocket_client.isConnected()){
         throw std::runtime_error("WebSocket is not connected");

@@ -12,6 +12,7 @@ namespace asio = boost::asio;
 using tcp = boost::asio::ip::tcp;
 using json = nlohmann::json;
 
+// Initialize WebSocket Client
 WebSocketClient::WebSocketClient()
    : ssl_context(boost::asio::ssl::context::sslv23),
      connected(false),
@@ -20,6 +21,7 @@ WebSocketClient::WebSocketClient()
     // std::cout << "Websocket client Initialized.\n";
 }
 
+// Shut Down WebSocket Client
 WebSocketClient::~WebSocketClient() {
     disconnect();
     if(io_thread.joinable()) {
@@ -28,6 +30,7 @@ WebSocketClient::~WebSocketClient() {
     // std::cout << "WebSocket Client Shut Down.\n";
 }
 
+// Connect using websocket
 void WebSocketClient::connect(const std::string& uri) {
     try{
         auto const pos = uri.find("://");
@@ -71,14 +74,13 @@ void WebSocketClient::connect(const std::string& uri) {
     }
 }
 
+// Disconnect websocket
 void WebSocketClient::disconnect() {
     if (!connected) return; // Avoid double disconnect
     
-
     try {
-        stop = true; // Signal other threads to stop
+        stop = true; 
 
-        // Logout payload (if needed)
         json payload = {
             {"jsonrpc", "2.0"},
             {"id", 1},
@@ -90,26 +92,17 @@ void WebSocketClient::disconnect() {
 
         if (ws && ws->is_open()) {
             boost::system::error_code ec;
-
-            // Close WebSocket gracefully
             ws->close(websocket::close_code::normal, ec);
             if (ec) {
-                std::cerr << "Error closing WebSocket: " << ec.message() << "\n";
+                // std::cerr << "Error closing WebSocket: " << ec.message() << "\n";
+                ;
             }
         }
-
-        // Allow pending handlers to complete
         ioc.poll();
-
-        // Stop the I/O context
         ioc.stop();
-
-        // Join the I/O thread if it's still running
         if (io_thread.joinable()) {
             io_thread.join();
         }
-
-        // Notify waiting threads
         cv.notify_all();
 
     } catch (const std::exception &e) {
@@ -117,13 +110,12 @@ void WebSocketClient::disconnect() {
     }
 }
 
-
+// Handle Sending Message over websocket
 void WebSocketClient::sendMessage(const std::string& message) {
     std::lock_guard<std::mutex> lock(ws_mutex);
     if (connected) {
         try {
-            // std::cout << "Sending message: " << message << "\n"; // Log message for debugging
-            ws->write(asio::buffer(message)); // Attempt to send the message
+            ws->write(asio::buffer(message));
         } catch (const std::exception& e) {
             std::cerr << "Error while sending message: " << e.what() << "\n";
         }
@@ -131,6 +123,8 @@ void WebSocketClient::sendMessage(const std::string& message) {
         std::cerr << "WebSocket is not connected. Cannot send message.\n";
     }
 }
+
+// Handle Receiving message over websocket
 std::string WebSocketClient::receiveMessage() {
     std::unique_lock<std::mutex> lock(ws_mutex);
     cv.wait(lock, [this] { return !message_queue.empty() || stop; });
@@ -144,16 +138,16 @@ std::string WebSocketClient::receiveMessage() {
     return message;
 }
 
+// Check for connection to websocket
 bool WebSocketClient::isConnected() const {
     return connected;
 }
 
+// Asynchronously run websocket
 void WebSocketClient::run() {
     try {
         while (!stop) {
             beast::flat_buffer buffer;
-
-            // Perform a read operation and handle errors gracefully
             boost::system::error_code ec;
             ws->read(buffer, ec);
 
@@ -169,8 +163,6 @@ void WebSocketClient::run() {
                     break;
                 }
             }
-
-            // Process received message
             {
                 std::lock_guard<std::mutex> lock(ws_mutex);
                 message_queue.push(beast::buffers_to_string(buffer.data()));
@@ -182,9 +174,9 @@ void WebSocketClient::run() {
     }
 }
 
-
+// Join back websocket thread 
 void WebSocketClient::join() {
     if (io_thread.joinable()) {
-        io_thread.join(); // Join the thread to wait for completion
+        io_thread.join();
     }
 }

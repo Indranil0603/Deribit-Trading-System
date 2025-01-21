@@ -4,7 +4,7 @@
 #include <functional>
 #include <SubscriptionList.h>
 
-
+// Data structure to handle the subscriptions
 SubscriptionList::SubscriptionList() : count(0), channels() {};
 
 // Add a channel to the subscription list

@@ -13,14 +13,12 @@ int main(int argc, char *argv[]) {
     std::cout << "\nEnter client_secret: ";
     std::cin >> client_secret;
     
-    //  = "EXemaHwx";
-    // std::string client_secret = "XsxRJ_3M0STYwPQbNlmIwwkLyqKUO1CEI0hSHcLJV4M";
 
-    WebSocketClient ws_market;
-    MarketData market(ws_market);
+    WebSocketClient ws_market;     // Initialize websocket for market
+    MarketData market(ws_market);  // Initialize market data object
 
-    WebSocketClient ws_client;
-    TradingSystem system(ws_client, client_id, client_secret);
+    WebSocketClient ws_client;    // Initialize websocket for trading
+    TradingSystem system(ws_client, client_id, client_secret); // Initialzie Trading system
 
     int choice = 0;
 

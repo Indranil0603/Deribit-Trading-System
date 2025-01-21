@@ -18,10 +18,9 @@ using json = nlohmann::json;
 Auth::Auth(WebSocketClient& ws_client, const std::string& client_id, const std::string& client_secret)
     : websocket_client(ws_client), client_id(client_id), client_secret(client_secret) {}
 
+// Authenticate user
 void Auth::authenticate() {
-    
     try{
-
         json payload = {
             {"jsonrpc", "2.0"},
             {"id", 1},
@@ -31,22 +30,19 @@ void Auth::authenticate() {
                         {"client_secret", client_secret}}}
         };
         json response = send_auth_request(payload);
-
         if (response.contains("result") && response["result"].contains("access_token")) {
-
-            std::cout << "Authentication Successfull\n\n";
-
+            ;
+            // std::cout << "Authentication Successfull\n";
         } else{
-            std::cerr << "Authentication failed: No result in response.\n\n";
+            std::cerr << "Authentication failed: No result in response.\n";
         }
-
     } catch (const std::exception &ex){
         std::cerr << "Authentication error: "<< ex.what() << std::endl;
     }
 
-    
 }
 
+// Handle sending of auth request
 json Auth::send_auth_request(const json& request){
     if( !websocket_client.isConnected() ) {
         throw std::runtime_error("WebSocket is not connected");

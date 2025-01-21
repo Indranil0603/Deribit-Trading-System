@@ -20,8 +20,8 @@ public:
     void disconnect();
     void sendMessage(const std::string& message);
     bool isConnected() const;
-    std::string receiveMessage();
     void join();
+    std::string receiveMessage();
 
 private:
     void run();

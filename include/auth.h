@@ -18,12 +18,7 @@ private:
 
 public:
     Auth(WebSocketClient& ws_client, const std::string& client_id, const std::string& client_secret);
-
-    // Authenticate and store tokens
     void authenticate();
-
-    // Get access token
-    std::string get_access_token() const;
 };
 
 #endif // AUTH_HPP

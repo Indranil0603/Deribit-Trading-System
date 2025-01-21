@@ -10,12 +10,14 @@
 
 using json = nlohmann::json;
 
+// Constructor for market data
 MarketData::MarketData(WebSocketClient &ws_client)
     : websocket_client(ws_client), streamProcessPID(-1), streaming_thread(), stop_flag(true), subscription_list() {
         websocket_client.connect("wss://test.deribit.com/ws/api/v2");
     }
 
 
+// Subscribe to a market data channel
 void MarketData::AddSubscription(){
     std::string instrumentName, interval;
     std::cout << "Enter instrument name: ";
@@ -24,7 +26,7 @@ void MarketData::AddSubscription(){
     std::cin >> interval;
     std::string channelStr = "book."+instrumentName+"."+interval;
     json options = {
-        {"channels", { channelStr }}  // channels should be an array
+        {"channels", { channelStr }} 
     };
 
     if(!websocket_client.isConnected()){
@@ -49,13 +51,14 @@ void MarketData::AddSubscription(){
 
 }
 
+// Remove subscription from a market channel
 void MarketData::RemoveSubscription(){
     std::string channel;
     std::cout << "Enter channel: ";
     std::cin >> channel;
     
     json options = {
-        {"channels", { channel }}  // channels should be an array
+        {"channels", { channel }}
     };
 
     if(!websocket_client.isConnected()){
@@ -80,19 +83,19 @@ void MarketData::RemoveSubscription(){
 
 }
 
-
-
+// Start streaming market data in log file
 void MarketData::startStreaming() {
     if (streaming_thread.joinable()) {
         std::cerr << "Streaming thread is already running!" << std::endl;
         return;
     }
 
-    stop_flag = false; // Reset the stop flag
-    streaming_thread = std::thread(&MarketData::streamData, this); // Start the thread
+    stop_flag = false;
+    streaming_thread = std::thread(&MarketData::streamData, this); 
     std::cout << "Streaming thread started." << std::endl;
 }
 
+// Stop streaming market data in log file
 void MarketData::stopStreaming() {
     if (streamProcessPID != -1) {
         if (kill(streamProcessPID, SIGTERM) == 0) {
@@ -103,10 +106,10 @@ void MarketData::stopStreaming() {
         streamProcessPID = -1;
     }
 
-    // Stop thread-based streaming
     terminateStreamingThread();
 }
 
+// Get data from the market data stream
 json MarketData::notification(const std::string &channel){
     json request ={
         {"jsonrpc", "2.0"},
@@ -120,6 +123,7 @@ json MarketData::notification(const std::string &channel){
 
 }
 
+// Handle streaming of market data in log file
 void MarketData::streamData() {
     std::ofstream logFile("market_data_stream.log", std::ios::app);
     if (!logFile.is_open()) {
@@ -128,7 +132,7 @@ void MarketData::streamData() {
     }
     stop_flag = false;
     try {
-        while (!stop_flag) { // Loop until stop_flag is set to true
+        while (!stop_flag) {
             subscription_list.forEachChannel([&](const std::string& channel) {
                 json res = notification(channel);
                 if (!res.empty() && res.contains("method")) {
@@ -146,6 +150,7 @@ void MarketData::streamData() {
     std::cout << "Streaming stopped gracefully." << std::endl;
 }
 
+// Handle termination of streaming of market data
 void MarketData::terminateStreamingThread() {
     if (!streaming_thread.joinable()) {
         std::cerr << "No streaming thread to stop!" << std::endl;

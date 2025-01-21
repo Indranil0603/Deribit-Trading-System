@@ -14,8 +14,8 @@ class MarketData {
     private:
         WebSocketClient& websocket_client;
         SubscriptionList subscription_list;
-        std::atomic<bool> stop_flag;  // Flag to signal thread termination
-        std::thread streaming_thread; // Thread for running streamData
+        std::atomic<bool> stop_flag;  
+        std::thread streaming_thread; 
         pid_t streamProcessPID;
 
     

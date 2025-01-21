@@ -7,8 +7,8 @@
 
 class SubscriptionList {
     private:
-        static const size_t MAX_CHANNELS = 100; // Fixed size
-        std::array<std::string, MAX_CHANNELS> channels; // Fixed-size array
+        static const size_t MAX_CHANNELS = 100;
+        std::array<std::string, MAX_CHANNELS> channels;
         size_t count;
     
     public:
