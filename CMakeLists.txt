@@ -9,6 +9,8 @@ set(SOURCES
     src/TradingSystem.cpp
     src/auth.cpp
     src/WebSocketClient.cpp
+    src/MarketDataStreaming.cpp
+    src/SubscriptionList.cpp
 )
 
 # Include directories

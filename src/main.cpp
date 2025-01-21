@@ -2,47 +2,40 @@
 #include <string>
 #include "TradingSystem.h"
 #include "WebSocketClient.h"
+#include "MarketDataStreaming.h"
 
-int main() {
-    // std::string client_id = "EXemaHwx";
+int main(int argc, char *argv[]) {
+
+
+    std::string client_id, client_secret;
+    std::cout << "\nEnter client id: ";
+    std::cin >> client_id;
+    std::cout << "\nEnter client_secret: ";
+    std::cin >> client_secret;
+    
+    //  = "EXemaHwx";
     // std::string client_secret = "XsxRJ_3M0STYwPQbNlmIwwkLyqKUO1CEI0hSHcLJV4M";
 
-    // WebSocketClient client;
-
-    // client.connect("wss://test.deribit.com/ws/api/v2");
-
-    
-    // Auth auth(client, client_id, client_secret);
-    // auth.authenticate();
-
-    // if (client.isConnected()) {
-    //     client.join();  // Wait for the thread to finish execution
-    // }
-
-    // auto token = TokenManager::getInstance().getToken();
-    // if (token) {
-    //     std::cout << "Main Program: Access Token: " << token->access_token << "\n";
-    // } else {
-    //     std::cerr << "Main Program: Authentication failed.\n";
-    // }
+    WebSocketClient ws_market;
+    MarketData market(ws_market);
 
     WebSocketClient ws_client;
-
-    std::string client_id = "";
-    std::string client_secret = "";
-
     TradingSystem system(ws_client, client_id, client_secret);
 
     int choice = 0;
 
     while (true) {
-        std::cout << "Trading System Menu:\n";
+        std::cout << "\nTrading System Menu:\n";
         std::cout << "1. Place Order\n";
         std::cout << "2. Cancel Order\n";
         std::cout << "3. Modify Order\n";
         std::cout << "4. Get Orderbook\n";
         std::cout << "5. View Current Positions\n";
-        std::cout << "6. Exit\n";
+        std::cout << "6. Subscribe to instrument\n";
+        std::cout << "7. Unsubscribe from instrument\n";
+        std::cout << "8. Stream Market Data\n";
+        std::cout << "9. Stop Streaming Market Data\n";
+        std::cout << "10. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -63,6 +56,18 @@ int main() {
                 system.viewPositions();
                 break;
             case 6:
+                market.AddSubscription();
+                break;
+            case 7:
+                market.RemoveSubscription();
+                break;
+            case 8:
+                market.startStreaming();
+                break;
+            case 9:
+                market.stopStreaming();
+                break;
+            case 10:
                 std::cout << "Exiting...\n";
                 return 0;
             default:
@@ -70,8 +75,6 @@ int main() {
         }
     }
 
-
-    // client.disconnect();
     return 0;
 }
 

@@ -1,5 +1,4 @@
 #include "TradingSystem.h"
-#include "TokenManager.h"
 #include "auth.h"
 #include <iostream>
 #include <nlohmann/json.hpp>
@@ -15,13 +14,11 @@ TradingSystem::TradingSystem(WebSocketClient& ws_client, const std::string& clie
     websocket_client.connect("wss://test.deribit.com/ws/api/v2");
     auth.authenticate();
 
-    // token_ptr = TokenManager::getInstance().getToken();
     std::cout << "Trading System Initialized.\n";
 }
 
 TradingSystem::~TradingSystem() {
     try{
-        websocket_client.disconnect();
 
         std::cout << "Trading System Shut Down.\n";
     } catch (const std::exception& e) {
@@ -31,22 +28,31 @@ TradingSystem::~TradingSystem() {
 }
 
 void TradingSystem::placeOrder() {
-    std::string instrument_name, amount, order_type;
+    std::string instrument_name, amount, order_type, price;
     std::cout << "\nEnter instrument_name: ";
     std::cin >> instrument_name;
     std::cout << "\nEnter amount: ";
     std::cin >> amount;
+    std::cout << "\nEnter price: ";
+    std::cin >> price;
     std::cout << "\nEnter order_type: ";
     std::cin >> order_type;
 
     json options = {
         {"instrument_name", instrument_name},
         {"amount", amount},
+        {"price", price},
         {"type", order_type}
     };
 
     json res = privateAPI("private/buy", options);
-    std::cout <<"Place order result: "<<res.dump()<<"\n";
+
+    if(res.contains("result")){
+        std::cout <<"Place order result: "<<res["result"].dump(4)<<"\n";
+    }
+    else{
+        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+    }
 }
 
 void TradingSystem::cancelOrder() {
@@ -59,19 +65,60 @@ void TradingSystem::cancelOrder() {
     };
 
     json res = privateAPI("private/cancel", options);
-    std::cout <<"Cancel order result: "<<res.dump()<<"\n";
+    if(res.contains("result")){
+        std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
+    }else{
+        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+    }
+
+
 }
 
 void TradingSystem::modifyOrder() {
-    std::cout << "[MODIFY ORDER] Placeholder function.\n";
+    std::string order_id, amount , price;
+    std::cout << "\nEnter order id: ";
+    std::cin >> order_id;
+    std::cout << "\nEnter amount: ";
+    std::cin >> amount;
+    std::cout << "\nEnter price: ";
+    std::cin >> price;
+    std::cout << "\nEnter order_type: ";
+
+    json options = {
+        {"order_id", order_id},
+        {"amount", amount},
+        {"price", price},
+    };
+
+    json res = privateAPI("private/edit", options);
+
+    if(res.contains("result")){
+        std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
+    }else{
+        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+    }
 }
 
 void TradingSystem::getOrderbook() {
-    std::cout << "[GET ORDERBOOK] Placeholder function.\n";
+    json options ={};
+
+    json res = privateAPI("private/get_open_orders", options);
+    if(res.contains("result")){
+        std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
+    }else{
+        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+    }
 }
 
 void TradingSystem::viewPositions() {
-    std::cout << "[VIEW POSITIONS] Placeholder function.\n";
+    json options = {};
+
+    json res = privateAPI("private/get_positions", options);
+    if(res.contains("result")){
+        std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
+    }else{
+        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+    }
 }
 
 json TradingSystem::privateAPI(const std::string &method,const json &options){

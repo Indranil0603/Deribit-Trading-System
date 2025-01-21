@@ -17,7 +17,7 @@ WebSocketClient::WebSocketClient()
      connected(false),
      stop(false) {
     ssl_context.set_default_verify_paths();
-    std::cout << "Websocket client Initialized.\n";
+    // std::cout << "Websocket client Initialized.\n";
 }
 
 WebSocketClient::~WebSocketClient() {
@@ -25,7 +25,7 @@ WebSocketClient::~WebSocketClient() {
     if(io_thread.joinable()) {
         io_thread.join();
     }
-    std::cout << "WebSocket Client Shut Dwon.\n";
+    // std::cout << "WebSocket Client Shut Down.\n";
 }
 
 void WebSocketClient::connect(const std::string& uri) {
@@ -72,43 +72,49 @@ void WebSocketClient::connect(const std::string& uri) {
 }
 
 void WebSocketClient::disconnect() {
-    if (connected) {
-        try {
-            stop = true;
+    if (!connected) return; // Avoid double disconnect
+    
 
-            json payload = {
-                {"jsonrpc", "2.0"},
-                {"id", 1},
-                {"method", "private/logout"},
-            };
+    try {
+        stop = true; // Signal other threads to stop
 
-            sendMessage(payload.dump());
-            
+        // Logout payload (if needed)
+        json payload = {
+            {"jsonrpc", "2.0"},
+            {"id", 1},
+            {"method", "private/logout"},
+        };
 
-            if (ws) {
-                // Close the WebSocket connection gracefully
-                ws->close(websocket::close_code::normal);
+        sendMessage(payload.dump());
+        connected = false;
+
+        if (ws && ws->is_open()) {
+            boost::system::error_code ec;
+
+            // Close WebSocket gracefully
+            ws->close(websocket::close_code::normal, ec);
+            if (ec) {
+                std::cerr << "Error closing WebSocket: " << ec.message() << "\n";
             }
-
-            // Allow all pending handlers to complete
-            ioc.poll();
-
-            // Stop the io_context
-            ioc.stop();
-
-            if (io_thread.joinable()) {
-                io_thread.join();
-            }
-
-
-            // Notify any waiting threads
-            cv.notify_all();
-        } catch (const std::exception &e) {
-            std::cerr << "Error during disconnect: " << e.what() << "\n";
         }
-    }
 
-    connected = false;
+        // Allow pending handlers to complete
+        ioc.poll();
+
+        // Stop the I/O context
+        ioc.stop();
+
+        // Join the I/O thread if it's still running
+        if (io_thread.joinable()) {
+            io_thread.join();
+        }
+
+        // Notify waiting threads
+        cv.notify_all();
+
+    } catch (const std::exception &e) {
+        std::cerr << "Error during disconnect: " << e.what() << "\n";
+    }
 }
 
 
@@ -152,11 +158,11 @@ void WebSocketClient::run() {
             ws->read(buffer, ec);
 
             if (ec) {
-                if (ec == websocket::error::closed) {
-                    std::cerr << "WebSocket closed by the server.\n";
+               if (ec == websocket::error::closed || ec == boost::asio::error::eof) {
+                    std::cerr << "WebSocket closed (EOF or by server).\n";
                     break;
                 } else if (ec == boost::asio::error::operation_aborted) {
-                    std::cerr << "WebSocket operation aborted (likely due to disconnect).\n";
+                    std::cerr << "WebSocket operation aborted.\n";
                     break;
                 } else {
                     std::cerr << "Error reading from WebSocket: " << ec.message() << "\n";

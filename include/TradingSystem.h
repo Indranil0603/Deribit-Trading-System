@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <memory> // For smart pointers
-#include <TokenManager.h>
 #include <WebSocketClient.h>
 #include <nlohmann/json.hpp>
 #include <auth.h>
@@ -13,7 +12,7 @@ class TradingSystem {
         std::string client_id;
         std::string client_secret;
         WebSocketClient& websocket_client;
-        // std::shared_ptr<AuthDetails> token_ptr;
+        
         nlohmann::json privateAPI(const std::string&, const nlohmann::json&);
         Auth auth;
 
