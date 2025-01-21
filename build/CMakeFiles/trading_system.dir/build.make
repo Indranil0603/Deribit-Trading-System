@@ -125,12 +125,42 @@ CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/indros0603/trading_system/src/WebSocketClient.cpp -o CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.s
 
+CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o: CMakeFiles/trading_system.dir/flags.make
+CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o: /home/indros0603/trading_system/src/MarketDataStreaming.cpp
+CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o: CMakeFiles/trading_system.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/indros0603/trading_system/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o -MF CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o.d -o CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o -c /home/indros0603/trading_system/src/MarketDataStreaming.cpp
+
+CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/indros0603/trading_system/src/MarketDataStreaming.cpp > CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.i
+
+CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/indros0603/trading_system/src/MarketDataStreaming.cpp -o CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.s
+
+CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o: CMakeFiles/trading_system.dir/flags.make
+CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o: /home/indros0603/trading_system/src/SubscriptionList.cpp
+CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o: CMakeFiles/trading_system.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/indros0603/trading_system/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o -MF CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o.d -o CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o -c /home/indros0603/trading_system/src/SubscriptionList.cpp
+
+CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/indros0603/trading_system/src/SubscriptionList.cpp > CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.i
+
+CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/indros0603/trading_system/src/SubscriptionList.cpp -o CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.s
+
 # Object files for target trading_system
 trading_system_OBJECTS = \
 "CMakeFiles/trading_system.dir/src/main.cpp.o" \
 "CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o" \
 "CMakeFiles/trading_system.dir/src/auth.cpp.o" \
-"CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o"
+"CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o" \
+"CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o" \
+"CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o"
 
 # External object files for target trading_system
 trading_system_EXTERNAL_OBJECTS =
@@ -139,6 +169,8 @@ trading_system: CMakeFiles/trading_system.dir/src/main.cpp.o
 trading_system: CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o
 trading_system: CMakeFiles/trading_system.dir/src/auth.cpp.o
 trading_system: CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o
+trading_system: CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o
+trading_system: CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o
 trading_system: CMakeFiles/trading_system.dir/build.make
 trading_system: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
 trading_system: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.83.0
@@ -146,7 +178,7 @@ trading_system: /usr/lib/x86_64-linux-gnu/libssl.so
 trading_system: /usr/lib/x86_64-linux-gnu/libcrypto.so
 trading_system: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.83.0
 trading_system: CMakeFiles/trading_system.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/indros0603/trading_system/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable trading_system"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/indros0603/trading_system/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable trading_system"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trading_system.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

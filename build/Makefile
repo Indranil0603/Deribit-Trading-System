@@ -129,6 +129,54 @@ trading_system/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/build
 .PHONY : trading_system/fast
 
+src/MarketDataStreaming.o: src/MarketDataStreaming.cpp.o
+.PHONY : src/MarketDataStreaming.o
+
+# target to build an object file
+src/MarketDataStreaming.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o
+.PHONY : src/MarketDataStreaming.cpp.o
+
+src/MarketDataStreaming.i: src/MarketDataStreaming.cpp.i
+.PHONY : src/MarketDataStreaming.i
+
+# target to preprocess a source file
+src/MarketDataStreaming.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.i
+.PHONY : src/MarketDataStreaming.cpp.i
+
+src/MarketDataStreaming.s: src/MarketDataStreaming.cpp.s
+.PHONY : src/MarketDataStreaming.s
+
+# target to generate assembly for a file
+src/MarketDataStreaming.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.s
+.PHONY : src/MarketDataStreaming.cpp.s
+
+src/SubscriptionList.o: src/SubscriptionList.cpp.o
+.PHONY : src/SubscriptionList.o
+
+# target to build an object file
+src/SubscriptionList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o
+.PHONY : src/SubscriptionList.cpp.o
+
+src/SubscriptionList.i: src/SubscriptionList.cpp.i
+.PHONY : src/SubscriptionList.i
+
+# target to preprocess a source file
+src/SubscriptionList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.i
+.PHONY : src/SubscriptionList.cpp.i
+
+src/SubscriptionList.s: src/SubscriptionList.cpp.s
+.PHONY : src/SubscriptionList.s
+
+# target to generate assembly for a file
+src/SubscriptionList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.s
+.PHONY : src/SubscriptionList.cpp.s
+
 src/TradingSystem.o: src/TradingSystem.cpp.o
 .PHONY : src/TradingSystem.o
 
@@ -234,6 +282,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... trading_system"
+	@echo "... src/MarketDataStreaming.o"
+	@echo "... src/MarketDataStreaming.i"
+	@echo "... src/MarketDataStreaming.s"
+	@echo "... src/SubscriptionList.o"
+	@echo "... src/SubscriptionList.i"
+	@echo "... src/SubscriptionList.s"
 	@echo "... src/TradingSystem.o"
 	@echo "... src/TradingSystem.i"
 	@echo "... src/TradingSystem.s"

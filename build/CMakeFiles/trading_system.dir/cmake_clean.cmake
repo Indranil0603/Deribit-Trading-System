@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o"
+  "CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o.d"
+  "CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o"
+  "CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o.d"
   "CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o"
   "CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o.d"
   "CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o"

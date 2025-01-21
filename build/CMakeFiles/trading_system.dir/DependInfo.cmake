@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/indros0603/trading_system/src/MarketDataStreaming.cpp" "CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o" "gcc" "CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o.d"
+  "/home/indros0603/trading_system/src/SubscriptionList.cpp" "CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o" "gcc" "CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o.d"
   "/home/indros0603/trading_system/src/TradingSystem.cpp" "CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o" "gcc" "CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o.d"
   "/home/indros0603/trading_system/src/WebSocketClient.cpp" "CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o" "gcc" "CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o.d"
   "/home/indros0603/trading_system/src/auth.cpp" "CMakeFiles/trading_system.dir/src/auth.cpp.o" "gcc" "CMakeFiles/trading_system.dir/src/auth.cpp.o.d"
