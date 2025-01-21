@@ -1,3 +1,4 @@
 /home/indros0603/trading_system/build/CMakeFiles/trading_system.dir
+/home/indros0603/trading_system/build/CMakeFiles/trading_benchmarks.dir
 /home/indros0603/trading_system/build/CMakeFiles/edit_cache.dir
 /home/indros0603/trading_system/build/CMakeFiles/rebuild_cache.dir

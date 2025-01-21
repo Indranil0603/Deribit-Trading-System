@@ -236,6 +236,9 @@ DeribitTradingSystem_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 DeribitTradingSystem_SOURCE_DIR:STATIC=/home/indros0603/trading_system
 
+//Enable building benchmarks
+ENABLE_BENCHMARKS:BOOL=ON
+
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcrypto.so
 
@@ -250,6 +253,9 @@ PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
+
+//The directory containing a CMake configuration file for benchmark.
+benchmark_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/benchmark
 
 //The directory containing a CMake configuration file for boost_asio.
 boost_asio_DIR:PATH=boost_asio_DIR-NOTFOUND

@@ -129,12 +129,50 @@ trading_system/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/build
 .PHONY : trading_system/fast
 
+#=============================================================================
+# Target rules for targets named trading_benchmarks
+
+# Build rule for target.
+trading_benchmarks: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 trading_benchmarks
+.PHONY : trading_benchmarks
+
+# fast build rule for target.
+trading_benchmarks/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/build
+.PHONY : trading_benchmarks/fast
+
+benchmarks/Benchmark.o: benchmarks/Benchmark.cpp.o
+.PHONY : benchmarks/Benchmark.o
+
+# target to build an object file
+benchmarks/Benchmark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/benchmarks/Benchmark.cpp.o
+.PHONY : benchmarks/Benchmark.cpp.o
+
+benchmarks/Benchmark.i: benchmarks/Benchmark.cpp.i
+.PHONY : benchmarks/Benchmark.i
+
+# target to preprocess a source file
+benchmarks/Benchmark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/benchmarks/Benchmark.cpp.i
+.PHONY : benchmarks/Benchmark.cpp.i
+
+benchmarks/Benchmark.s: benchmarks/Benchmark.cpp.s
+.PHONY : benchmarks/Benchmark.s
+
+# target to generate assembly for a file
+benchmarks/Benchmark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/benchmarks/Benchmark.cpp.s
+.PHONY : benchmarks/Benchmark.cpp.s
+
 src/MarketDataStreaming.o: src/MarketDataStreaming.cpp.o
 .PHONY : src/MarketDataStreaming.o
 
 # target to build an object file
 src/MarketDataStreaming.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/MarketDataStreaming.cpp.o
 .PHONY : src/MarketDataStreaming.cpp.o
 
 src/MarketDataStreaming.i: src/MarketDataStreaming.cpp.i
@@ -143,6 +181,7 @@ src/MarketDataStreaming.i: src/MarketDataStreaming.cpp.i
 # target to preprocess a source file
 src/MarketDataStreaming.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/MarketDataStreaming.cpp.i
 .PHONY : src/MarketDataStreaming.cpp.i
 
 src/MarketDataStreaming.s: src/MarketDataStreaming.cpp.s
@@ -151,6 +190,7 @@ src/MarketDataStreaming.s: src/MarketDataStreaming.cpp.s
 # target to generate assembly for a file
 src/MarketDataStreaming.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/MarketDataStreaming.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/MarketDataStreaming.cpp.s
 .PHONY : src/MarketDataStreaming.cpp.s
 
 src/SubscriptionList.o: src/SubscriptionList.cpp.o
@@ -159,6 +199,7 @@ src/SubscriptionList.o: src/SubscriptionList.cpp.o
 # target to build an object file
 src/SubscriptionList.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/SubscriptionList.cpp.o
 .PHONY : src/SubscriptionList.cpp.o
 
 src/SubscriptionList.i: src/SubscriptionList.cpp.i
@@ -167,6 +208,7 @@ src/SubscriptionList.i: src/SubscriptionList.cpp.i
 # target to preprocess a source file
 src/SubscriptionList.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/SubscriptionList.cpp.i
 .PHONY : src/SubscriptionList.cpp.i
 
 src/SubscriptionList.s: src/SubscriptionList.cpp.s
@@ -175,6 +217,7 @@ src/SubscriptionList.s: src/SubscriptionList.cpp.s
 # target to generate assembly for a file
 src/SubscriptionList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/SubscriptionList.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/SubscriptionList.cpp.s
 .PHONY : src/SubscriptionList.cpp.s
 
 src/TradingSystem.o: src/TradingSystem.cpp.o
@@ -183,6 +226,7 @@ src/TradingSystem.o: src/TradingSystem.cpp.o
 # target to build an object file
 src/TradingSystem.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/TradingSystem.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/TradingSystem.cpp.o
 .PHONY : src/TradingSystem.cpp.o
 
 src/TradingSystem.i: src/TradingSystem.cpp.i
@@ -191,6 +235,7 @@ src/TradingSystem.i: src/TradingSystem.cpp.i
 # target to preprocess a source file
 src/TradingSystem.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/TradingSystem.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/TradingSystem.cpp.i
 .PHONY : src/TradingSystem.cpp.i
 
 src/TradingSystem.s: src/TradingSystem.cpp.s
@@ -199,6 +244,7 @@ src/TradingSystem.s: src/TradingSystem.cpp.s
 # target to generate assembly for a file
 src/TradingSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/TradingSystem.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/TradingSystem.cpp.s
 .PHONY : src/TradingSystem.cpp.s
 
 src/WebSocketClient.o: src/WebSocketClient.cpp.o
@@ -207,6 +253,7 @@ src/WebSocketClient.o: src/WebSocketClient.cpp.o
 # target to build an object file
 src/WebSocketClient.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/WebSocketClient.cpp.o
 .PHONY : src/WebSocketClient.cpp.o
 
 src/WebSocketClient.i: src/WebSocketClient.cpp.i
@@ -215,6 +262,7 @@ src/WebSocketClient.i: src/WebSocketClient.cpp.i
 # target to preprocess a source file
 src/WebSocketClient.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/WebSocketClient.cpp.i
 .PHONY : src/WebSocketClient.cpp.i
 
 src/WebSocketClient.s: src/WebSocketClient.cpp.s
@@ -223,6 +271,7 @@ src/WebSocketClient.s: src/WebSocketClient.cpp.s
 # target to generate assembly for a file
 src/WebSocketClient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/WebSocketClient.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/WebSocketClient.cpp.s
 .PHONY : src/WebSocketClient.cpp.s
 
 src/auth.o: src/auth.cpp.o
@@ -231,6 +280,7 @@ src/auth.o: src/auth.cpp.o
 # target to build an object file
 src/auth.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/auth.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/auth.cpp.o
 .PHONY : src/auth.cpp.o
 
 src/auth.i: src/auth.cpp.i
@@ -239,6 +289,7 @@ src/auth.i: src/auth.cpp.i
 # target to preprocess a source file
 src/auth.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/auth.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/auth.cpp.i
 .PHONY : src/auth.cpp.i
 
 src/auth.s: src/auth.cpp.s
@@ -247,6 +298,7 @@ src/auth.s: src/auth.cpp.s
 # target to generate assembly for a file
 src/auth.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_system.dir/build.make CMakeFiles/trading_system.dir/src/auth.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/trading_benchmarks.dir/build.make CMakeFiles/trading_benchmarks.dir/src/auth.cpp.s
 .PHONY : src/auth.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -281,7 +333,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... trading_benchmarks"
 	@echo "... trading_system"
+	@echo "... benchmarks/Benchmark.o"
+	@echo "... benchmarks/Benchmark.i"
+	@echo "... benchmarks/Benchmark.s"
 	@echo "... src/MarketDataStreaming.o"
 	@echo "... src/MarketDataStreaming.i"
 	@echo "... src/MarketDataStreaming.s"

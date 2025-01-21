@@ -14,6 +14,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0/BoostConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0/BoostConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/BoostDetectToolset-1.83.0.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/benchmark/benchmarkConfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/benchmark/benchmarkConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/benchmark/benchmarkTargets-none.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/benchmark/benchmarkTargets.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.83.0/boost_atomic-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.83.0/boost_atomic-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.83.0/libboost_atomic-variant-shared.cmake"
@@ -80,4 +84,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/trading_system.dir/DependInfo.cmake"
+  "CMakeFiles/trading_benchmarks.dir/DependInfo.cmake"
   )
