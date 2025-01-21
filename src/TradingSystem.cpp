@@ -30,7 +30,7 @@ TradingSystem::~TradingSystem() {
 }
 
 // Placing order
-void TradingSystem::placeOrder() {
+void TradingSystem::placeOrder() const {
     std::string order, instrument_name, amount, order_type, price;
     std::cout << "\nEnter order type(buy/sell): ";
     std::cin >> order;
@@ -61,7 +61,7 @@ void TradingSystem::placeOrder() {
 }
 
 // Canceling order
-void TradingSystem::cancelOrder() {
+void TradingSystem::cancelOrder() const {
     std::string order_id;
     std::cout << "Enter Order id: ";
     std::cin >> order_id;
@@ -74,14 +74,14 @@ void TradingSystem::cancelOrder() {
     if(res.contains("result")){
         std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
     }else{
-        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+        std::cout <<"Error in canceling order : "<<res["error"].dump(4)<<"\n";
     }
 
 
 }
 
 // Modifying Order
-void TradingSystem::modifyOrder() {
+void TradingSystem::modifyOrder() const {
     std::string order_id, amount , price;
     std::cout << "\nEnter order id: ";
     std::cin >> order_id;
@@ -100,14 +100,14 @@ void TradingSystem::modifyOrder() {
     json res = privateAPI("private/edit", options);
 
     if(res.contains("result")){
-        std::cout <<"Cancel order result: "<<res.dump(4)<<"\n";
+        std::cout <<"Modify order result: "<<res.dump(4)<<"\n";
     }else{
-        std::cout <<"Error in placing order : "<<res["error"].dump(4)<<"\n";
+        std::cout <<"Error in modifying order : "<<res["error"].dump(4)<<"\n";
     }
 }
 
 // Get the open orders
-void TradingSystem::getOrderbook() {
+void TradingSystem::getOrderbook() const {
     json options ={};
 
     json res = privateAPI("private/get_open_orders", options);
@@ -119,7 +119,7 @@ void TradingSystem::getOrderbook() {
 }
 
 // Get Current Positions
-void TradingSystem::viewPositions() {
+void TradingSystem::viewPositions() const {
     json options = {};
 
     json res = privateAPI("private/get_positions", options);
@@ -131,7 +131,7 @@ void TradingSystem::viewPositions() {
 }
 
 // Handle requests of private type
-json TradingSystem::privateAPI(const std::string &method,const json &options){
+json TradingSystem::privateAPI(const std::string &method,const json &options) const {
     if(!websocket_client.isConnected()){
         throw std::runtime_error("WebSocket is not connected");
     }
@@ -143,7 +143,7 @@ json TradingSystem::privateAPI(const std::string &method,const json &options){
         {"params", options}
     };
 
-    auth.authenticate();
+    // auth.authenticate();
     websocket_client.sendMessage(request.dump());
     std::string response_str = websocket_client.receiveMessage();
     return json::parse(response_str);

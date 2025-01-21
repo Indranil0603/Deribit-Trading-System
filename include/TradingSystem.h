@@ -13,18 +13,18 @@ class TradingSystem {
         std::string client_secret;
         WebSocketClient& websocket_client;
         
-        nlohmann::json privateAPI(const std::string&, const nlohmann::json&);
+        nlohmann::json privateAPI(const std::string&, const nlohmann::json&) const;
         Auth auth;
 
     public:
         TradingSystem(WebSocketClient& , const std::string&, const std::string&);
         ~TradingSystem();
 
-        void placeOrder();
-        void cancelOrder();
-        void modifyOrder();
-        void getOrderbook();
-        void viewPositions();
+        void placeOrder() const;
+        void cancelOrder() const;
+        void modifyOrder() const;
+        void getOrderbook() const;
+        void viewPositions() const;
         
     };
 

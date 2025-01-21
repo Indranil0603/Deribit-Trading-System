@@ -57,7 +57,7 @@ void WebSocketClient::connect(const std::string& uri) {
         boost::asio::ssl::stream<tcp::socket> ssl_stream(std::move(socket), ssl_ctx);
 
         ws = std::make_unique<boost::beast::websocket::stream<boost::asio::ssl::stream<tcp::socket>>>(std::move(ssl_stream));
-
+        boost::asio::ip::tcp::no_delay option(true);
         asio::connect(ws->next_layer().next_layer(), results.begin(), results.end());
 
         ws->next_layer().handshake(boost::asio::ssl::stream_base::client);
@@ -150,7 +150,6 @@ void WebSocketClient::run() {
             beast::flat_buffer buffer;
             boost::system::error_code ec;
             ws->read(buffer, ec);
-
             if (ec) {
                if (ec == websocket::error::closed || ec == boost::asio::error::eof) {
                     std::cerr << "WebSocket closed (EOF or by server).\n";
